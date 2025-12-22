@@ -1,0 +1,19 @@
+.-cmp-actions-bar {
+  margin-top: 8px;
+  margin-bottom: 8px;
+}
+
+.-cmp-control-row {
+  display: flex;
+  flex-direction: row;
+  align-items: stretch;
+
+  & > label {
+    flex: 1 0 auto;
+
+    & > b {
+      width: 8ch;
+      text-align: right;
+    }
+  }
+}

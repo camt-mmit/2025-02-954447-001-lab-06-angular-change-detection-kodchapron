@@ -1,0 +1,19 @@
+label {
+  display: inline-flex;
+  flex-direction: row;
+  align-items: baseline;
+
+  & > * {
+    box-sizing: border-box;
+  }
+
+  & > b::after {
+    content: ':';
+    margin-right: 1ch;
+  }
+
+  & > :is(input, select, textarea, output) {
+    flex: 1 0 auto;
+    height: 100%;
+  }
+}
