@@ -1,0 +1,19 @@
+<h2>Trial One</h2>
+
+@for (item of items; track $index) {
+  <div class="-cmp-control-row">
+    <label>
+      <b>{{ $index + 1 }}</b>
+      <input type="number" #elem [value]="item" (change)="onChange($index, elem.valueAsNumber)" />
+    </label>
+  </div>
+}
+
+<div class="-cmp-control-row">
+  <label>
+    <b>Result</b>
+    <span>
+      <output class="app-cl-number">{{ items.join(', ') }}</output>
+    </span>
+  </label>
+</div>

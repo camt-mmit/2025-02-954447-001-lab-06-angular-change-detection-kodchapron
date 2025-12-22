@@ -1,0 +1,26 @@
+<h2>Trial Zero</h2>
+
+<div>
+  <button type="button" (click)="toggleWithSignal()" class="app-cmp-button">
+    <i class="material-symbols-outlined">{{
+      withSignal() ? 'check_box' : 'check_box_outline_blank'
+    }}</i>
+    Toggle With Signal
+  </button>
+</div>
+
+<div>
+  <label>
+    <b>Normal Variable</b>
+    <output class="app-cl-number">{{ i }}</output>
+  </label>
+</div>
+
+@if (withSignal()) {
+  <div>
+    <label>
+      <b>Signal</b>
+      <output class="app-cl-number">{{ j() }}</output>
+    </label>
+  </div>
+}

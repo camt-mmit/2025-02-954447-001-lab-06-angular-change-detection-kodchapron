@@ -1,0 +1,65 @@
+<h2>Dynamic Section</h2>
+
+<div class="-cmp-actions-bar">
+  <button type="button" (click)="addSection()" class="app-cmp-button">
+    <i class="material-symbols-outlined">post_add</i>
+    Section
+  </button>
+</div>
+
+@for (section of sections; track section; let sIdx = $index) {
+  <article class="app-cmp-section">
+    <header>
+      <button type="button" (click)="addInput(sIdx)" class="app-cmp-button">
+        <i class="material-symbols-outlined">add</i>
+        Input
+      </button>
+      <span>Section {{ sIdx + 1 }}</span>
+      <button
+        type="button"
+        (click)="removeSection(sIdx)"
+        class="app-cmp-button app-cl-warn"
+        [disabled]="!canRemoveSection()"
+      >
+        <i class="material-symbols-outlined">delete_forever</i>
+      </button>
+    </header>
+
+    <div class="app-cl-column-container">
+      <section class="app-cmp-number-list">
+        @for (input of section.inputs; track input; let iIdx = $index) {
+          <div class="app-cmp-number">
+            <label>
+              <b>Number {{ iIdx + 1 }} ::</b>
+              <input
+                type="number"
+                #numInput
+                [value]="input.value"
+                (change)="onInputChange(sIdx, iIdx, numInput.valueAsNumber)"
+              />
+            </label>
+            <button
+              type="button"
+              (click)="removeInput(sIdx, iIdx)"
+              class="app-cmp-button app-cl-warn app-cl-icon"
+              [disabled]="!canRemoveInput(sIdx)"
+            >
+              <i class="material-symbols-outlined">delete_forever</i>
+            </button>
+          </div>
+        }
+      </section>
+
+      <section>
+        <div class="app-cmp-number">
+          <label>
+            <b>Result ::</b>
+            <output class="app-cl-number app-out-number">
+              {{ getResult(sIdx) }}
+            </output>
+          </label>
+        </div>
+      </section>
+    </div>
+  </article>
+}

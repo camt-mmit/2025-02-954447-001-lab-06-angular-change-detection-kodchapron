@@ -1,0 +1,37 @@
+<h2>Trial Three</h2>
+
+<div class="-cmp-actions-bar">
+  <button type="button" (click)="add()" class="app-cmp-button">
+    <i class="material-symbols-outlined">add</i>
+    Add
+  </button>
+</div>
+
+@for (item of items; track item) {
+  <div class="-cmp-control-row">
+    <label>
+      <b>{{ $index + 1 }}</b>
+      <input
+        type="number"
+        #elem
+        [value]="item.value"
+        (change)="onChange($index, elem.valueAsNumber)"
+      />
+    </label>
+    <button type="button" (click)="changeColor(elem)" class="app-cmp-button">
+      <i class="material-symbols-outlined">colors</i>
+    </button>
+    <button type="button" (click)="remove($index)" class="app-cmp-button app-cl-warn">
+      <i class="material-symbols-outlined">delete_forever</i>
+    </button>
+  </div>
+}
+
+<div class="-cmp-control-row">
+  <label>
+    <b>Result</b>
+    <span>
+      <output class="app-cl-number">{{ getResult() }}</output>
+    </span>
+  </label>
+</div>
