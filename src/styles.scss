@@ -3,24 +3,36 @@
   --app-font: 'Roboto Flex', 'Noto Sans Thai Looped', sans-serif;
   --app-monospace-font: 'Roboto Mono', monospace;
 
-  --app-surface-color: light-dark(#ffffff, #121212);
-  --app-surface-container-color: light-dark(#808080, #404040);
-  --app-on-surface-color: light-dark(#333333, #ffffff);
-  --app-warn-color: #ff0000;
+  // 🩵 Cinnamoroll Color Palette
+  --cinnamoroll-sky-blue: #a8d8ea;
+  --cinnamoroll-baby-blue: #d4e9f7;
+  --cinnamoroll-cream: #fff9e6;
+  --cinnamoroll-pink: #ffd4e5;
+  --cinnamoroll-white: #ffffff;
+  --cinnamoroll-cloud: #f0f8ff;
+  --cinnamoroll-text: #5a7d9a;
+  --cinnamoroll-text-dark: #3d5a73;
 
-  // --app-brand-primary-color: #7373ff;
-  --app-brand-primary-color: #0000ff;
+  --app-surface-color: light-dark(var(--cinnamoroll-cloud), #1a2332);
+  --app-surface-container-color: light-dark(var(--cinnamoroll-baby-blue), #2d3e50);
+  --app-on-surface-color: light-dark(var(--cinnamoroll-text-dark), #e8f4f8);
+  --app-warn-color: #ff8fab;
+
+  --app-brand-primary-color: var(--cinnamoroll-sky-blue);
 
   --app-primary-color: light-dark(
-    var(--app-brand-primary-color),
-    color-mix(in srgb, var(--app-brand-primary-color), #ffffff 25%)
+    var(--cinnamoroll-sky-blue),
+    color-mix(in srgb, var(--cinnamoroll-sky-blue), #ffffff 25%)
   );
-  --app-on-primary-color: #ffffff;
+  --app-on-primary-color: var(--cinnamoroll-white);
 
   color-scheme: light dark;
 
   color: var(--app-on-surface-color);
-  background-color: var(--app-surface-color);
+  background: light-dark(
+    linear-gradient(180deg, var(--cinnamoroll-cloud) 0%, var(--cinnamoroll-cream) 100%),
+    linear-gradient(180deg, #1a2332 0%, #0f1419 100%)
+  );
 
   font-family: var(--app-font);
   font-size: 16px;
@@ -42,8 +54,8 @@ body {
   box-sizing: border-box;
   margin: 0px;
   padding: 0px;
-
   height: 100%;
+  min-height: 100vh;
 }
 
 input[type='number'],
@@ -59,10 +71,10 @@ input[type='number'],
 .app-cmp-button {
   --prop-text-color: var(--cmp-color, var(--app-primary-color));
   --prop-border-color: var(--cmp-border-color, var(--cmp-color, var(--app-primary-color)));
-  --prob-background-color: var(--cmp-background-color, transpalent);
+  --prob-background-color: var(--cmp-background-color, var(--cinnamoroll-white));
   --prob-on-hover-background-color: var(
     --cmp-on-hover-background-color,
-    var(--app-surface-container-color)
+    var(--cinnamoroll-baby-blue)
   );
 
   box-sizing: border-box;
@@ -75,24 +87,33 @@ input[type='number'],
   cursor: pointer;
 
   color: var(--prop-text-color);
-  background-color: var(--prop-background-color);
-  border: 1px solid var(--prop-border-color);
-  border-radius: 4px;
+  background-color: var(--prob-background-color);
+  border: 2px solid var(--prop-border-color);
+  border-radius: 20px;
+  padding: 0.5em 1.2ch;
 
-  padding: 0.5em 1ch;
+  font-weight: 500;
+  transition: all 0.3s ease;
+  box-shadow: 0 2px 8px rgba(168, 216, 234, 0.2);
 
   &:hover {
     background-color: var(--prob-on-hover-background-color);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(168, 216, 234, 0.3);
+  }
+
+  &:active {
+    transform: translateY(0);
   }
 }
 
 .app-cmp-links {
   --prop-text-color: var(--cmp-color, var(--app-primary-color));
   --prop-border-color: var(--cmp-border-color, var(--app-primary-color));
-  --prob-background-color: var(--cmp-background-color, transpalent);
+  --prob-background-color: var(--cmp-background-color, var(--cinnamoroll-white));
   --prob-on-hover-background-color: var(
     --cmp-on-hover-background-color,
-    var(--app-surface-container-color)
+    var(--cinnamoroll-baby-blue)
   );
 
   display: inline-flex;
@@ -114,15 +135,19 @@ input[type='number'],
 
     background-color: var(--prob-background-color);
 
-    border: 1px solid var(--prop-border-color);
+    border: 2px solid var(--prop-border-color);
     border-radius: 9999px;
 
     margin: 0px;
     padding: 0px;
     overflow: hidden;
 
+    transition: all 0.3s ease;
+
     &:hover {
-      background-color: color(from var(--prob-on-hover-background-color) srgb r g b / 0.5);
+      background-color: var(--prob-on-hover-background-color);
+      transform: translateY(-2px);
+      box-shadow: 0 4px 8px rgba(168, 216, 234, 0.25);
     }
 
     & > a {
@@ -146,7 +171,7 @@ input[type='number'],
     --prob-background-color: var(--cmp-background-color, var(--app-primary-color));
     --prob-on-hover-background-color: var(
       --cmp-on-hover-background-color,
-      var(--app-primary-color)
+      var(--cinnamoroll-sky-blue)
     );
   }
 }
@@ -160,42 +185,57 @@ input[type='number'],
     'opsz' 24;
 }
 
-// Section Component Styles
+// 🩵 Cinnamoroll Section Styles
 .app-cmp-section {
-  border: 1px solid var(--app-surface-container-color);
-  border-radius: 8px;
-  margin-bottom: 16px;
+  border: 2px solid var(--cinnamoroll-sky-blue);
+  border-radius: 20px;
+  margin-bottom: 20px;
   overflow: hidden;
+  background: var(--cinnamoroll-white);
+  box-shadow: 0 4px 16px rgba(168, 216, 234, 0.25);
+  transition: all 0.3s ease;
+
+  &:hover {
+    box-shadow: 0 6px 20px rgba(168, 216, 234, 0.35);
+    transform: translateY(-2px);
+  }
 
   header {
     display: flex;
     flex-direction: row;
     align-items: center;
     gap: 12px;
-    padding: 12px 16px;
-    background-color: color-mix(in srgb, var(--app-surface-container-color), transparent 50%);
-    border-bottom: 1px solid var(--app-surface-container-color);
+    padding: 16px 20px;
+    background: linear-gradient(
+      135deg,
+      var(--cinnamoroll-baby-blue) 0%,
+      var(--cinnamoroll-sky-blue) 100%
+    );
+    border-bottom: 2px solid var(--cinnamoroll-sky-blue);
 
     span {
       flex: 1;
-      font-weight: 500;
-      font-size: 1rem;
+      font-weight: 600;
+      font-size: 1.1rem;
+      color: var(--cinnamoroll-text-dark);
     }
 
     .app-cmp-button {
       gap: 6px;
-      padding: 6px 12px;
+      padding: 8px 16px;
       font-size: 0.9rem;
+      background: var(--cinnamoroll-white);
 
       &:disabled {
-        opacity: 0.4;
+        opacity: 0.5;
         cursor: not-allowed;
+        transform: none;
       }
     }
   }
 
   .app-cl-column-container {
-    padding: 16px;
+    padding: 20px;
     display: flex;
     flex-direction: column;
     gap: 16px;
@@ -213,44 +253,64 @@ input[type='number'],
   flex-direction: row;
   align-items: center;
   gap: 8px;
+  padding: 12px;
+  background: var(--cinnamoroll-cloud);
+  border-radius: 16px;
+  transition: all 0.3s ease;
+
+  &:hover {
+    background: var(--cinnamoroll-baby-blue);
+    transform: translateX(4px);
+  }
 
   label {
     display: flex;
     flex-direction: row;
     align-items: center;
-    gap: 8px;
+    gap: 12px;
     flex: 1;
 
     b {
-      font-weight: 500;
+      font-weight: 600;
       min-width: 120px;
+      color: var(--cinnamoroll-text-dark);
     }
 
     input[type='number'],
     output {
       flex: 1;
-      padding: 8px 12px;
-      border: 1px solid var(--app-surface-container-color);
-      border-radius: 4px;
-      background-color: var(--app-surface-color);
-      color: var(--app-on-surface-color);
-      font-size: 0.95rem;
+      padding: 10px 14px;
+      border: 2px solid var(--cinnamoroll-sky-blue);
+      border-radius: 12px;
+      background-color: var(--cinnamoroll-white);
+      color: var(--cinnamoroll-text-dark);
+      font-size: 1rem;
       min-width: 0;
+      transition: all 0.3s ease;
 
       &:focus {
-        outline: 2px solid var(--app-primary-color);
-        outline-offset: -1px;
+        outline: none;
+        border-color: var(--cinnamoroll-sky-blue);
+        box-shadow: 0 0 0 4px rgba(168, 216, 234, 0.2);
+        transform: scale(1.02);
+      }
+
+      &:hover {
+        border-color: var(--cinnamoroll-sky-blue);
       }
     }
 
     output {
       border-color: transparent;
+      background: transparent;
+      font-weight: 600;
     }
   }
 
   .app-cl-icon {
-    padding: 6px;
+    padding: 8px;
     min-width: auto;
+    border-radius: 50%;
 
     &:disabled {
       opacity: 0.4;
@@ -260,22 +320,40 @@ input[type='number'],
 }
 
 .app-out-number {
-  font-weight: 500;
-  font-size: 1.1rem;
+  font-weight: 600;
+  font-size: 1.2rem;
+  color: var(--cinnamoroll-sky-blue);
 }
 
 .-cmp-actions-bar {
-  margin-bottom: 16px;
+  margin-bottom: 20px;
 
   .app-cmp-button {
     gap: 8px;
-    padding: 8px 16px;
-    font-size: 0.95rem;
+    padding: 12px 24px;
+    font-size: 1rem;
+    font-weight: 600;
+    background: linear-gradient(
+      135deg,
+      var(--cinnamoroll-white) 0%,
+      var(--cinnamoroll-baby-blue) 100%
+    );
+
+    &:hover {
+      background: linear-gradient(
+        135deg,
+        var(--cinnamoroll-baby-blue) 0%,
+        var(--cinnamoroll-sky-blue) 100%
+      );
+    }
   }
 }
 
 h2 {
-  margin: 0 0 16px 0;
-  font-size: 1.5rem;
-  font-weight: 500;
+  margin: 0 0 20px 0;
+  font-size: 1.8rem;
+  font-weight: 700;
+  color: var(--cinnamoroll-sky-blue);
+  text-align: center;
+  text-shadow: 2px 2px 4px rgba(168, 216, 234, 0.3);
 }
