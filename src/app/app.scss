@@ -1,5 +1,5 @@
 :host {
-  --prop-gap: 8px;
+  --prop-gap: 12px;
 
   box-sizing: border-box;
   display: block;
@@ -8,30 +8,42 @@
 
 .-cmp-main-content {
   box-sizing: border-box;
-  width: min(720px, 100%);
-
+  width: min(725px, 100%);
   margin-left: auto;
   margin-right: auto;
+  padding: 20px;
 }
 
 header {
-  --prop-height: 64px;
+  --prop-height: 80px;
 
   box-sizing: border-box;
-
   display: flex;
   flex-direction: column;
   align-items: stretch;
   row-gap: var(--prop-gap);
-
-  padding-top: var(--prop-gap);
+  padding: 20px;
+  background: linear-gradient(180deg, rgba(168, 216, 234, 0.1) 0%, transparent 100%);
+  border-radius: 24px;
+  margin-bottom: 24px;
 
   h1 {
     margin: 0px;
+    font-size: 2rem;
+    font-weight: 700;
+    color: var(--cinnamoroll-sky-blue);
+    text-align: center;
+    text-shadow: 2px 2px 4px rgba(168, 216, 234, 0.3);
   }
 
   .angular-logo {
     max-height: var(--prop-height);
+    filter: drop-shadow(0 4px 8px rgba(168, 216, 234, 0.3));
+    transition: transform 0.3s ease;
+
+    &:hover {
+      transform: scale(1.05) rotate(5deg);
+    }
   }
 }
 
@@ -51,28 +63,32 @@ header {
 .-cmp-title {
   box-sizing: border-box;
   width: 100%;
-
   display: flex;
   flex-direction: row;
   align-items: center;
   justify-content: center;
   column-gap: var(--prop-gap);
+  padding: 16px;
+  background: linear-gradient(
+    135deg,
+    var(--cinnamoroll-baby-blue) 0%,
+    var(--cinnamoroll-cloud) 100%
+  );
+  border-radius: 20px;
+  box-shadow: 0 4px 12px rgba(168, 216, 234, 0.2);
 }
 
 .-cmp-nav {
-  --prop-color: var(--cmp-color, var(--app-primary-color));
-  --prop-surface-container-color: var(
-    --cmp-surface-container-color,
-    var(--app-surface-container-color)
-  );
+  --prop-color: var(--cmp-color, var(--cinnamoroll-sky-blue));
+  --prop-surface-container-color: var(--cmp-surface-container-color, var(--cinnamoroll-baby-blue));
 
   display: inline-flex;
   flex-direction: row;
   flex-wrap: wrap;
   align-items: baseline;
   justify-content: center;
-  column-gap: var(--prop-gap);
-  row-gap: var(--prop-gap);
+  column-gap: 8px;
+  row-gap: 8px;
 
   list-style: none;
   padding: 0px;
@@ -82,20 +98,33 @@ header {
     display: inline-block;
 
     color: var(--prop-color);
-    font-weight: bold;
-    border: 1px solid var(--prop-color);
-    border-radius: 4px;
+    font-weight: 600;
+    border: 2px solid var(--prop-color);
+    border-radius: 20px;
     overflow: hidden;
 
     margin: 0px;
     padding: 0px;
 
+    background: var(--cinnamoroll-white);
+    transition: all 0.3s ease;
+    box-shadow: 0 2px 6px rgba(168, 216, 234, 0.15);
+
     &.-st-active {
-      background-color: color(from var(--prop-surface-container-color) srgb r g b / 0.9);
+      background: linear-gradient(
+        135deg,
+        var(--cinnamoroll-sky-blue) 0%,
+        var(--cinnamoroll-baby-blue) 100%
+      );
+      color: var(--cinnamoroll-white);
+      transform: translateY(-2px);
+      box-shadow: 0 4px 12px rgba(168, 216, 234, 0.4);
     }
 
     &:not(.-st-active):hover {
-      background-color: color(from var(--prop-surface-container-color) srgb r g b / 0.5);
+      background: var(--cinnamoroll-baby-blue);
+      transform: translateY(-2px);
+      box-shadow: 0 4px 10px rgba(168, 216, 234, 0.3);
     }
 
     & > a {
@@ -104,16 +133,50 @@ header {
       display: inline-flex;
       flex-direction: row;
       align-items: center;
-      column-gap: 4px;
+      column-gap: 6px;
 
       height: 100%;
 
-      padding: 0.25em 1ch;
+      padding: 0.4em 1ch;
       margin: 0px;
 
       color: inherit;
       text-decoration: none;
       white-space: nowrap;
+      font-size: 0.9rem;
     }
+  }
+}
+
+// 🩵 Cute decorative elements
+.-cmp-main-content::before {
+  content: '☁️';
+  position: fixed;
+  top: 20px;
+  right: 20px;
+  font-size: 3rem;
+  opacity: 0.3;
+  pointer-events: none;
+  animation: float 3s ease-in-out infinite;
+}
+
+.-cmp-main-content::after {
+  content: '⭐';
+  position: fixed;
+  bottom: 40px;
+  left: 30px;
+  font-size: 2rem;
+  opacity: 0.3;
+  pointer-events: none;
+  animation: float 4s ease-in-out infinite;
+}
+
+@keyframes float {
+  0%,
+  100% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(-10px);
   }
 }
