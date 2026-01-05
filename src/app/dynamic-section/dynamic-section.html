@@ -7,7 +7,7 @@
   </button>
 </div>
 
-@for (section of sections; track section; let sIdx = $index) {
+@for (section of sections(); track section; let sIdx = $index) {
   <article class="app-cmp-section">
     <header>
       <button type="button" (click)="addInput(sIdx)" class="app-cmp-button">
@@ -42,7 +42,7 @@
               type="button"
               (click)="removeInput(sIdx, iIdx)"
               class="app-cmp-button app-cl-warn app-cl-icon"
-              [disabled]="!canRemoveInput(sIdx)"
+              [disabled]="!canRemoveInputArray()[sIdx]"
             >
               <i class="material-symbols-outlined">delete_forever</i>
             </button>
@@ -55,7 +55,7 @@
           <label>
             <b>Result ::</b>
             <output class="app-cl-number app-out-number">
-              {{ getResult(sIdx) }}
+              {{ resultArray()[sIdx] }}
             </output>
           </label>
         </div>
